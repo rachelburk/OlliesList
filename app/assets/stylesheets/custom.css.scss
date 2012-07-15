@@ -66,6 +66,9 @@ font-size: 1.1em; line-height: 1.7em;
     text-decoration: none;
   }
 }
+.navbar-inner {
+  background-color: #000080
+}
 
 /* footer */
 footer {
@@ -75,7 +78,7 @@ border-top: 1px solid $grayMediumLight; color: $grayLight;
 a{
     color: $gray;
     &:hover {
-      color: $grayDarker;
+      background-color: $grayDarker;
     }
 }
 small {

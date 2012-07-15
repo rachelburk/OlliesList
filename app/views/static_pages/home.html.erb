@@ -1,6 +1,11 @@
 <div class="center hero-unit">
-  <h1>Welcome to the Generic App</h1>
-<h2>
-    This is the home page for a generic app.
-</h2>
-<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %> </div>
+	<h1>Welcome to OlliesList</h1>
+		<h2>
+    		Selling and Buying stuff within the Brandeis Community, made simple!
+		</h2>
+	<% if signed_in? %>
+		<%= link_to "Check out Items for Sale!", items_path, class: "btn btn-large btn-primary" %>
+	<% else %>
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %> 
+	<% end %>
+</div>

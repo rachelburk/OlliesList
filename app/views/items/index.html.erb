@@ -1,0 +1,37 @@
+<h1>Listing items</h1>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Belongs To</th>
+    <th>Price</th>
+    <th>Sold</th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.name %></td>
+    <td><%= item.dscrp %></td>
+    <% if item.user == current_user %>
+        <td> You </td>
+    <% else %>
+        <td><%=link_to item.user.name, item.user %></td>
+    <% end %> 
+    <td>$<%= item.price %></td>
+    <td><%= item.sold ? "yes" : "no"%></td>
+    <% if item.user == current_user %>
+            <td><%= link_to 'Show', item %> |
+            <%= link_to 'Edit', edit_item_path(item) %> |
+            <%= link_to 'Delete', item, confirm: 'Are you sure?', method: :delete %></td>
+    <% else %>
+        <td><%= item.sold ? "SOLD!" : (link_to 'Interested?', item) %> </td>
+    <% end %> 
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path %>

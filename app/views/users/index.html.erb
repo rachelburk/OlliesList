@@ -4,6 +4,11 @@
   <% @users.each do |user| %>
     <li>
       <%= gravatar_for(user, size: 52) %>
-      <%= link_to user.name, user %> </li>
+      
+      	<b><%= link_to user.name, user %> </b>
+      	<% if user == current_user %>
+      		(you) | <%= link_to "Edit Profile", edit_user_path(user) %>
+      	<% end %>
+      	</li>
     <% end %>
   </ul>

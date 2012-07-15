@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @item.name %>
+</p>
+
+<p>
+  <b>Belongs to:</b>
+  <%=  link_to @item.user.name, @item.user %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.dscrp %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @item.price %>
+</p>
+
+<p>
+  <b>Sold:</b>
+  <%= @item.sold ? "yes" : "no" %>
+</p>
+
+<% if @item.user == current_user %>
+  <%= link_to 'Edit', edit_item_path(@item) %> |
+<% else %>
+  <div>
+    <%= form_for(@item) do |f| %>
+      <%= f.label :sold %> 
+      <%= f.check_box :sold %> 
+      <%= f.submit "BUY", confirm: 'Are you sure?',
+                    class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+<% end %>
+<%= link_to 'Back', items_path %>

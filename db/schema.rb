@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620141753) do
+ActiveRecord::Schema.define(:version => 20120713195921) do
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "dscrp"
+    t.integer  "price"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "user_id"
+    t.boolean  "sold",       :default => false
+    t.string   "status",     :default => "selling"
+  end
+
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
