@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  before_filter :signed_in_user, except: [:index]
+  before_filter :current_user, only: [:edit, :update]
+  
   # GET /items
   # GET /items.json
   def index
