@@ -84,4 +84,38 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def mobiledownload
+    @items = Item.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
+  end 
+
+  def mobileupload
+    user = User.find_by_email(params[:email])
+    puts "#{params}"
+    @item = Item.new(params)
+    @item.user = user
+
+    if user 
+      respond_to do |format|
+        if @item.save
+          puts "should have saved"
+          format.html { redirect_to @report, notice: 'Item was successfully created.' }
+          # This is where string identifier is sent back
+          format.json { render json: @item  }
+        else
+          puts "should not have saved"
+          format.html { render action: "new" }
+          format.json { render json: @items.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      puts "***********No user with given token"
+    end
+  end
 end

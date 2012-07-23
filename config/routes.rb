@@ -19,6 +19,9 @@ SampleApp::Application.routes.draw do
   #match '/items', to: 'items#index'
   match '/buy/:item_id', to: 'items#buy'
 
+  match '/mobiledownload.json', to: 'items#mobiledownload'
+  match '/mobileupload.json', to: 'items#mobileupload'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
